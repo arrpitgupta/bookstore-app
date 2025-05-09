@@ -72,7 +72,7 @@ const HomePage = () => {
   };
 
   return (
-    <div className="home-page">
+    <div className="home-page" >
       <h1>Bookstore</h1>
       <SearchBar onSearch={handleSearch} />
       <FilterBar filters={filters} categories={categories} onFilterChange={handleFilterChange} />

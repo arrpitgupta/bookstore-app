@@ -1,22 +1,37 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import HomePage from './page/HomePage';
 import CreateBookForm from './component/CreateBookForm';
+import LandingPage from './page/LandingPage';
 
-const App = () => {
+const AppLayout = () => {
+  const location = useLocation();
+
+  
+  const hideNavbar = location.pathname === '/';
+
   return (
-    <Router>
-      <nav className="navbar">
-        <Link to="/" className="nav-link">Home</Link>
-        <Link to="/create" className="nav-link">Add New Book</Link>
-      </nav>
+    <>
+      {!hideNavbar && (
+        <nav className="navbar">
+          <Link to="/home" className="nav-link">Home</Link>
+          <Link to="/create" className="nav-link">Add New Book</Link>
+        </nav>
+      )}
       <div className="app">
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/home" element={<HomePage />} />
           <Route path="/create" element={<CreateBookForm />} />
         </Routes>
       </div>
-    </Router>
+    </>
   );
 };
+
+const App = () => (
+  <Router>
+    <AppLayout />
+  </Router>
+);
 
 export default App;
