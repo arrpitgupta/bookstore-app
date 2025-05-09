@@ -5,12 +5,12 @@ import FloatingBook from "../component/FloatingBook";
 import { useState } from "react";
 
 const books = [
-  "/src/assets/book1.webp",
-  "/src/assets/book2.jpg",
-  "/src/assets/book3.jpg",
-  "/src/assets/book4.jpg",
-  "/src/assets/book5.jpg",
-  "/src/assets/book6.webp"
+  "/assets/book1.webp",
+  "/assets/book2.jpg",
+  "/assets/book3.jpg",
+  "/assets/book4.jpg",
+  "/assets/book5.jpg",
+  "/assets/book6.webp"
 ];
 
 export default function LandingPage() {
@@ -28,7 +28,7 @@ export default function LandingPage() {
     <div className="relative min-h-screen bg-[#fafafa] overflow-hidden px-6">
       <motion.div
         className="absolute inset-0 bg-cover bg-center opacity-50"
-        style={{ backgroundImage: 'url("/src/assets/book-background.jpg")' }}
+        style={{ backgroundImage: 'url("/assets/book-background.jpg")' }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.5 }}
         transition={{ duration: 2 }}
