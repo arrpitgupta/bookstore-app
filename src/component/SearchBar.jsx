@@ -1,14 +1,15 @@
-import { useState } from 'react';
+import PropTypes from "prop-types";
+import { useState } from "react";
 
 const SearchBar = ({ onSearch }) => {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
 
   const handleSearch = () => {
     onSearch(query);
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       handleSearch();
     }
   };
@@ -17,9 +18,8 @@ const SearchBar = ({ onSearch }) => {
     const value = e.target.value;
     setQuery(value);
 
-    
-    if (value === '') {
-      onSearch('');
+    if (value === "") {
+      onSearch("");
     }
   };
 
@@ -38,5 +38,6 @@ const SearchBar = ({ onSearch }) => {
     </div>
   );
 };
+SearchBar.propTypes  = { onSearch: PropTypes.func.isRequired };
 
 export default SearchBar;
