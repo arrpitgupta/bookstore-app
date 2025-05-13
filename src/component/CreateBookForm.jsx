@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createBook } from '../service/api';
+import { motion } from 'framer-motion';
 
 const CreateBookForm = () => {
   const [formData, setFormData] = useState({
@@ -37,9 +38,14 @@ const CreateBookForm = () => {
   };
 
   return (
-    <div className="create-book-page">
-      <h2>Create a New Book</h2>
-      <form onSubmit={handleSubmit} className="create-book-form">
+    <motion.div
+      className="max-w-xl mx-auto mt-10 p-6 bg-white rounded-2xl shadow-lg"
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">📚 Create a New Book</h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
         {[
           { label: 'Title', name: 'title', type: 'text' },
           { label: 'Author', name: 'author', type: 'text' },
@@ -48,8 +54,10 @@ const CreateBookForm = () => {
           { label: 'Price', name: 'price', type: 'number', step: '0.01' },
           { label: 'Category', name: 'category', type: 'text' },
         ].map(({ label, name, type, step }) => (
-          <div className="form-group" key={name}>
-            <label htmlFor={name}>{label}</label>
+          <div key={name}>
+            <label htmlFor={name} className="block text-sm font-medium text-gray-700">
+              {label}
+            </label>
             <input
               id={name}
               type={type}
@@ -58,24 +66,36 @@ const CreateBookForm = () => {
               onChange={handleChange}
               required
               {...(step && { step })}
+              className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent"
             />
           </div>
         ))}
-        <div className="form-group">
-          <label htmlFor="description">Description</label>
+
+        <div>
+          <label htmlFor="description" className="block text-sm font-medium text-gray-700">
+            Description
+          </label>
           <textarea
             id="description"
             name="description"
             value={formData.description}
             onChange={handleChange}
             required
+            rows="4"
+            className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent"
           ></textarea>
         </div>
-        <button type="submit" className="btn-primary" disabled={loading}>
+
+        <motion.button
+          type="submit"
+          whileTap={{ scale: 0.95 }}
+          className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-lg font-semibold transition duration-200"
+          disabled={loading}
+        >
           {loading ? 'Creating...' : 'Create Book'}
-        </button>
+        </motion.button>
       </form>
-    </div>
+    </motion.div>
   );
 };
 

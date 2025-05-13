@@ -15,7 +15,7 @@ export const fetchBooks = async (filters) => {
 };
 export const fetchCategories = async () => {
   const response = await axios.get(`${API_BASE_URL}/categories`);
-  console.log(response);
+  // console.log(response);
 
   return response.data;
 };
@@ -40,4 +40,12 @@ export const createBook = async (bookData) => {
     console.error("Error creating book:", error);
     throw error;
   }
+};
+export const deleteBookById = async (id) => {
+  const res = await axios.delete(`${API_BASE_URL}/deleteBook/${id}`);
+  return res.data;
+};
+export const updateBookPrice = async (id, price) => {
+  const { data } = await axios.put(`${API_BASE_URL}/updateBook/${id}`, { price });
+  return data;
 };
