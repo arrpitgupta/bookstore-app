@@ -2,83 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.perspective {
+  perspective: 1000px;
+}
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+.backface-hidden {
+  backface-visibility: hidden;
+}
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #868383;
+  background-color: #756969;
 }
 
-.home-page h1 {
-  display: flex;
-  justify-content: center;
-  font-size: 28px;
-  color: #333;
-  margin-top: 20px;
-}
 
-.home-page .data-txt {
-  display: flex;
-  justify-content: center;
-  font-size: 28px;
-  color: #333;
-  
-}
 .landing-heading{
   font-family: "Satisfy", cursive;
   font-optical-sizing: auto;
   font-style: normal;
 }
-.search-bar {
-  display: flex;
-  justify-content: center;
-  margin: 40px 0;
-}
 
-.search-bar input {
-  padding: 12px;
-  width: 300px;
-  border: 1px solid #ccc;
-  border-radius: 5px 0 0 5px;
-  font-size: 16px;
-}
 
-.search-btn {
-  padding: 12px 20px;
-  cursor: pointer;
-  color: #fff;
-  background-color: #333;
-  border: none;
-  border-radius: 0 5px 5px 0;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
-}
 
-.search-btn:hover {
-  background-color: #555;
-}
 
-.book-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  padding: 20px;
-  margin: 0 auto;
-  max-width: 1200px;
-}
 
-.book-card {
-  background: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.book-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
 
 .image-container {
   width: 100%;
@@ -97,107 +53,11 @@ body {
   padding: 15px;
 }
 
-.title {
-  font-size: 20px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 10px;
-}
 
-.author {
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 8px;
-}
 
-.category,
-.price,
-.description {
-  font-size: 14px;
-  margin-bottom: 10px;
-  color: #555;
-}
 
-.btn-primary {
-  display: inline-block;
-  padding: 10px 15px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  font-size: 14px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
 
-.btn-primary:hover {
-  background-color: #0056b3;
-}
-.navbar {
-  display: flex;
-  gap: 20px;
-  padding: 20px 20px;
-  background-color: #f8f9fa;
-  border-bottom: 1px solid #ddd;
-  justify-content: space-between;
-}
 
-.nav-link {
-  text-decoration: none;
-  color: #007bff;
-  font-weight: bold;
-}
-
-.nav-link:hover {
-  text-decoration: underline;
-}
-
-.create-book-page {
-  padding: 20px;
-  max-width: 600px;
-  margin: 40px auto;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.create-book-page h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #333;
-  font-size: 24px;
-}
-
-.create-book-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-group label {
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.form-group input,
-.form-group textarea {
-  padding: 12px;
-  font-size: 14px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-textarea {
-  resize: none;
-  height: 100px;
-}
 
 .btn-primary {
   padding: 12px;
@@ -213,44 +73,6 @@ textarea {
 
 .btn-primary:hover {
   background-color: #0056b3;
-}
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-  margin: 30px 0;
-  padding: 12px;
-  border-radius: 10px;
-  background-color: #f0f4f8;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-  flex-wrap: wrap;
-}
-
-.page-btn {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.page-btn:hover:not(:disabled) {
-  background-color: #0056b3;
-  transform: scale(1.05);
-}
-
-.page-btn:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-.page-count {
-  font-size: 16px;
-  color: #333;
 }
 
 
