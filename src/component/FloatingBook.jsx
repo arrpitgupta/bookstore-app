@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import PropTypes from "prop-types";
 
 const FloatingBook = ({ src, index }) => {
   const delay = index * 0.2;
@@ -45,6 +46,10 @@ const FloatingBook = ({ src, index }) => {
       </motion.div>
     </motion.div>
   );
+};
+FloatingBook.propTypes = {
+  src: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired
 };
 
 export default FloatingBook;
