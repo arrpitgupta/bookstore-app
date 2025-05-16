@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createBook } from '../service/api';
 import { motion } from 'framer-motion';
+import { ImagePlus } from 'lucide-react';
 
 const CreateBookForm = () => {
   const [formData, setFormData] = useState({
@@ -14,28 +15,47 @@ const CreateBookForm = () => {
     description: '',
   });
 
+  const [coverImage, setCoverImage] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-
-    try {
-      await createBook(formData);
-      alert('Book created successfully!');
-      navigate('/');
-    } catch (error) {
-      alert(`Error: ${error.message}`);
-    } finally {
-      setLoading(false);
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setCoverImage(file);
+      setPreviewUrl(URL.createObjectURL(file));
     }
   };
+
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+
+  try {
+    const form = new FormData();
+    for (const key in formData) {
+      form.append(key, formData[key]);
+    }
+    if (coverImage) {
+      form.append("coverImage", coverImage);
+    }
+
+    
+    await createBook(form);
+    alert('Book created successfully!');
+    navigate('/home');
+  } catch (error) {
+    alert(`Error: ${error.message}`);
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <motion.div
@@ -45,7 +65,7 @@ const CreateBookForm = () => {
       transition={{ duration: 0.5 }}
     >
       <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">📚 Create a New Book</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-5">
         {[
           { label: 'Title', name: 'title', type: 'text' },
           { label: 'Author', name: 'author', type: 'text' },
@@ -84,6 +104,41 @@ const CreateBookForm = () => {
             rows="4"
             className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent"
           ></textarea>
+        </div>
+
+       
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Cover Image</label>
+          <div className="flex items-center justify-center gap-4">
+            <label className="cursor-pointer flex items-center justify-center w-32 h-40 bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg hover:bg-gray-200 transition duration-200">
+              <input type="file" accept="image/*" onChange={handleImageChange} className="hidden" />
+              {previewUrl ? (
+                <img
+                  src={previewUrl}
+                  alt="Preview"
+                  className="w-full h-full object-cover rounded-lg"
+                />
+              ) : (
+                <div className="text-gray-400 text-sm flex flex-col items-center">
+                  <ImagePlus className="w-6 h-6 mb-1" />
+                  Upload
+                </div>
+              )}
+            </label>
+
+            {previewUrl && (
+              <button
+                type="button"
+                onClick={() => {
+                  setCoverImage(null);
+                  setPreviewUrl(null);
+                }}
+                className="text-sm text-red-500 hover:underline"
+              >
+                Remove
+              </button>
+            )}
+          </div>
         </div>
 
         <motion.button

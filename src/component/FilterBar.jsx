@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 const FilterBar = ({ filters, categories, onFilterChange }) => {
   return (
-    <div className="bg-white rounded-xl shadow-md p-4 mb-6 w-full">
+    <div className="bg-gray-100 rounded-xl shadow-md p-4 mb-6 w-full">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
         <select
           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
