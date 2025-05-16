@@ -25,7 +25,7 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <div className="flex items-center gap-2 w-full max-w-lg mx-auto px-4 py-2 bg-white shadow-md rounded-full">
+    <div className="flex items-center gap-2 w-full max-w-lg mx-auto px-4 py-2 bg-gray-100 shadow-md rounded-full">
       <input
         type="text"
         placeholder="Search for books..."

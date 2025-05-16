@@ -8,32 +8,41 @@ import {
 import HomePage from "./page/HomePage";
 import CreateBookForm from "./component/CreateBookForm";
 import LandingPage from "./page/LandingPage";
+import { BookOpen, House } from "lucide-react";
+
 
 const AppLayout = () => {
   const location = useLocation();
-  const hideNavbar = location.pathname === "/";
+  const currentPath = location.pathname;
+
+  const hideNavbar = currentPath === "/";
+  const isOnCreatePage = currentPath === "/create";
+  const isOnHomePage = currentPath === "/home";
 
   return (
     <>
       {!hideNavbar && (
         <nav className="fixed top-0 left-0 w-full bg-white shadow-md z-50 px-4 py-3 flex justify-between items-center border-b border-gray-200">
-          <Link
-              to="/">
-          <div className="text-xl font-bold landing-heading">Bookstore</div>
+          <Link to="/">
+            <div className="text-xl font-bold landing-heading">Bookstore</div>
           </Link>
           <div className="flex space-x-4">
-            <Link
-              to="/home"
-              className="text-gray-700 hover:text-indigo-600 font-medium transition-colors"
-            >
-              Home
-            </Link>
-            <Link
-              to="/create"
-              className="text-gray-700 hover:text-indigo-600 font-medium transition-colors"
-            >
-              Add New Book
-            </Link>
+            {isOnCreatePage && (
+              <Link
+                to="/home"
+                className="text-gray-700 hover:text-indigo-600 font-medium transition-colors"
+              >
+                <House />
+              </Link>
+            )}
+            {isOnHomePage && (
+              <Link
+                to="/create"
+                className="text-gray-700 hover:text-indigo-600 font-medium transition-colors"
+              >
+                <BookOpen/>
+              </Link>
+            )}
           </div>
         </nav>
       )}

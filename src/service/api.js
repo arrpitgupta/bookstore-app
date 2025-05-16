@@ -1,7 +1,7 @@
 import axios from "axios";
-// const API_BASE_URL = "http://localhost:7000/api/v1/books";
+const API_BASE_URL = "http://localhost:7000/api/v1/books";
 
-const API_BASE_URL = 'https://bookstore-backend-iota.vercel.app/api/v1/books';
+// const API_BASE_URL = 'https://bookstore-backend-iota.vercel.app/api/v1/books';
 
 export const fetchBooks = async (filters) => {
   try {
@@ -20,26 +20,12 @@ export const fetchCategories = async () => {
   return response.data;
 };
 
-export const createBook = async (bookData) => {
-  try {
-    const response = await fetch(`${API_BASE_URL}/create`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(bookData),
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || "Failed to create book");
+export const createBook = async (data) => {
+  return await axios.post(`${API_BASE_URL}/create`,data, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
     }
-
-    return await response.json();
-  } catch (error) {
-    console.error("Error creating book:", error);
-    throw error;
-  }
+  });
 };
 export const deleteBookById = async (id) => {
   const res = await axios.delete(`${API_BASE_URL}/deleteBook/${id}`);
