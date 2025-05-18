@@ -36,7 +36,7 @@ export default function LandingPage() {
 
       <header className="relative z-10 py-8 flex justify-between items-center">
         <h1 className="text-2xl font-bold text-gray-800 landing-heading">Bookstore</h1>
-        <motion.button 
+        {/* <motion.button 
               className="bg-yellow-500 text-white px-4 py-2 rounded-full shadow-lg hover:bg-yellow-600 transition-all"
               initial={{ x: 20, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
@@ -45,7 +45,7 @@ export default function LandingPage() {
               whileTap={{ scale: 0.98 }}
             >
               Purchase Now
-            </motion.button>
+            </motion.button> */}
       </header>
 
       <main className="relative z-10 text-center mt-20">
