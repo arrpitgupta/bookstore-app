@@ -1,7 +1,7 @@
 import axios from "axios";
-const API_BASE_URL = "http://localhost:7000/api/v1/books";
+// const API_BASE_URL = "http://localhost:7000/api/v1/books";
 
-// const API_BASE_URL = 'https://bookstore-backend-iota.vercel.app/api/v1/books';
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 export const fetchBooks = async (filters) => {
   try {
