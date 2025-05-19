@@ -46,9 +46,7 @@ const HomePage = () => {
       }
     };
     loadCategories();
-
   }, []);
-  
 
   const handleFilterChange = (type, value) => {
     setFilters((prev) => ({ ...prev, [type]: value, page: 1 }));
@@ -62,25 +60,27 @@ const HomePage = () => {
     setFilters((prev) => ({ ...prev, page: newPage }));
   };
   const handleDelete = (deletedId) => {
-  setBooks((prev) => prev.filter((book) => book._id !== deletedId));
-};
+    setBooks((prev) => prev.filter((book) => book._id !== deletedId));
+  };
   const handleUpdate = (updatedBook) => {
- setBooks((prev) =>
+    setBooks((prev) =>
       prev.map((b) => (b._id === updatedBook._id ? updatedBook : b))
-    )
+    );
     fetchBooks();
-};
+  };
 
   return (
     <div className="px-4 md:px-8 py-6">
-      {/* <h1 className="text-3xl font-bold text-center text-indigo-700 mb-6">📚 Bookstore</h1> */}
-
       <div className="mb-4">
         <SearchBar onSearch={handleSearch} />
       </div>
 
       <div className="mb-4">
-        <FilterBar filters={filters} categories={categories} onFilterChange={handleFilterChange} />
+        <FilterBar
+          filters={filters}
+          categories={categories}
+          onFilterChange={handleFilterChange}
+        />
       </div>
 
       {loading ? (
@@ -88,11 +88,18 @@ const HomePage = () => {
       ) : books.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {books.map((book) => (
-            <BookCard key={book._id} book={book} onDelete={handleDelete} onUpdate={handleUpdate}  />
+            <BookCard
+              key={book._id}
+              book={book}
+              onDelete={handleDelete}
+              onUpdate={handleUpdate}
+            />
           ))}
         </div>
       ) : (
-        <p className="text-center text-red-500 text-lg font-medium">No books found.</p>
+        <p className="text-center text-red-500 text-lg font-medium">
+          No books found.
+        </p>
       )}
 
       {/* Pagination */}
