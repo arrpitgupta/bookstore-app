@@ -15,16 +15,15 @@ export const fetchBooks = async (filters) => {
 };
 export const fetchCategories = async () => {
   const response = await axios.get(`${API_BASE_URL}/categories`);
-  // console.log(response);
 
   return response.data;
 };
 
 export const createBook = async (data) => {
-  return await axios.post(`${API_BASE_URL}/create`,data, {
+  return await axios.post(`${API_BASE_URL}/create`, data, {
     headers: {
-      'Content-Type': 'multipart/form-data'
-    }
+      "Content-Type": "multipart/form-data",
+    },
   });
 };
 export const deleteBookById = async (id) => {
@@ -32,6 +31,8 @@ export const deleteBookById = async (id) => {
   return res.data;
 };
 export const updateBookPrice = async (id, price) => {
-  const { data } = await axios.put(`${API_BASE_URL}/updateBook/${id}`, { price });
+  const { data } = await axios.put(`${API_BASE_URL}/updateBook/${id}`, {
+    price,
+  });
   return data;
 };
