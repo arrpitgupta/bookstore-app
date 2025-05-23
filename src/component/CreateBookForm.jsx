@@ -65,6 +65,7 @@ const CreateBookForm = () => {
       transition={{ duration: 0.5 }}
     >
       <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">📚 Create a New Book</h2>
+      {/* form */}
       <form onSubmit={handleSubmit} className="space-y-5">
         {[
           { label: 'Title', name: 'title', type: 'text' },
